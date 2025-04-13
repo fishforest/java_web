@@ -1,4 +1,4 @@
-package com.example;
+package com.example.welcome;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ public class WelcomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 获取 RequestDispatcher 对象，用于转发请求到 welcome.jsp
-        RequestDispatcher dispatcher = req.getRequestDispatcher("welcome.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("welcome/welcome.jsp");
 
         // 转发请求
         dispatcher.forward(req, resp);

@@ -22,7 +22,7 @@
 
   <servlet>
     <servlet-name>WelcomeServlet</servlet-name>
-    <servlet-class>com.example.WelcomeServlet</servlet-class>
+    <servlet-class>com.example.welcome.WelcomeServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
