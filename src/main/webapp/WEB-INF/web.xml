@@ -16,11 +16,6 @@
   </servlet>
 
   <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.example.LoginServlet</servlet-class>
-  </servlet>
-
-  <servlet>
     <servlet-name>WelcomeServlet</servlet-name>
     <servlet-class>com.example.welcome.WelcomeServlet</servlet-class>
   </servlet>
@@ -35,10 +30,6 @@
     <url-pattern>/servletjsp</url-pattern>
   </servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>WelcomeServlet</servlet-name>
