@@ -34,9 +34,9 @@
         /* 表单行样式 */
         .form-row {
             display: flex;
-            justify-content: flex-start; /* 修改此行以左对齐 */
             align-items: center;
             margin-bottom: 15px;
+            width: 100%; /* 新增 */
         }
 
         .form-row label {
@@ -64,6 +64,7 @@
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 10px; /* 新增 */
         }
 
         .login-container input[type="submit"]:hover {
