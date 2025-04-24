@@ -70,11 +70,26 @@
         .login-container input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        /* 错误信息样式 */
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
 <div class="login-container">
     <h2>登录</h2>
+    <%-- 显示错误信息 --%>
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+    <div class="error-message"><%= error %></div>
+    <%
+        }
+    %>
     <form action="login" method="post" accept-charset="UTF-8">
         <div class="form-row">
             <label for="phone">号码:</label>

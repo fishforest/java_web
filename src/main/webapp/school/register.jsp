@@ -62,6 +62,15 @@
         a:hover {
             text-decoration: underline;
         }
+        .registered-message {
+            text-align: center;
+            color: #333;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -72,8 +81,9 @@
     <input type="text" id="phone" name="phone" required>
     <label for="captcha">验证码:</label>
     <input type="text" id="captcha" name="captcha" required>
-    <input type="submit" value="注册">
+    <input type="submit" id="submitBtn" value="注册">
     <a href="login">已有账号，去登录</a>
+    <div id="registeredMessage" class="registered-message hidden">该用户已注册，请直接登录</div>
 </form>
 </body>
 </html>
