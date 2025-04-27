@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
-        String captcha = request.getParameter("captcha");
+        String password = request.getParameter("password"); // 将 captcha 改为 password
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
             conn = DatabaseUtil.getConnection();
             
             // 检查users表是否存在，如果不存在则创建
-            String checkTableSql = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) UNIQUE, phone VARCHAR(255), captcha VARCHAR(255))";
+            String checkTableSql = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) UNIQUE, phone VARCHAR(255), password VARCHAR(255))"; // 将 captcha 改为 password
             pstmt = conn.prepareStatement(checkTableSql);
             pstmt.executeUpdate();
 
@@ -46,11 +46,11 @@ public class RegisterServlet extends HttpServlet {
                 request.getRequestDispatcher("/school/register_result.jsp").forward(request, response);
             } else {
                 // 用户未注册，将用户信息写入数据库
-                String insertUserSql = "INSERT INTO users (name, phone, captcha) VALUES (?, ?,?)";
+                String insertUserSql = "INSERT INTO users (name, phone, password) VALUES (?, ?, ?)"; // 将 captcha 改为 password
                 pstmt = conn.prepareStatement(insertUserSql);
                 pstmt.setString(1, name);
                 pstmt.setString(2, phone);
-                pstmt.setString(3, captcha);
+                pstmt.setString(3, password); // 将 captcha 改为 password
                 pstmt.executeUpdate();
 
                 request.setAttribute("message", "恭喜注册成功");

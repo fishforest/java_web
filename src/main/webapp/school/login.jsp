@@ -34,24 +34,24 @@
         /* 表单行样式 */
         .form-row {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             margin-bottom: 15px;
-            width: 100%; /* 新增 */
+            width: 100%;
         }
 
         .form-row label {
-            flex: 1;
-            text-align: right;
-            margin-right: 10px;
+            margin-bottom: 5px;
+            color: #555;
             font-size: 14px;
         }
 
-        .form-row input[type="text"] {
-            flex: 2;
-            padding: 8px;
-            border: 1px solid #cccccc;
+        .form-row input[type="text"], .form-row input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
+            height: 40px;
         }
 
         /* 提交按钮样式 */
@@ -77,6 +77,26 @@
             margin-bottom: 15px;
         }
     </style>
+    <script>
+        function validatePhone() {
+            var phone = document.getElementById("phone").value;
+            var phonePattern = /^\d{11}$/;
+            if (!phonePattern.test(phone)) {
+                alert("电话号码格式不正确，请输入11位数字");
+                return false;
+            }
+            return true;
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            if (password.length !== 6) {
+                alert("密码长度必须为6位");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
 <div class="login-container">
@@ -90,18 +110,18 @@
     <%
         }
     %>
-    <form action="login" method="post" accept-charset="UTF-8">
+    <form action="login" method="post" accept-charset="UTF-8" onsubmit="return validatePhone() && validatePassword()">
         <div class="form-row">
             <label for="phone">号码:</label>
             <input type="text" id="phone" name="phone" required>
         </div>
         <div class="form-row">
-            <label for="captcha">验证码:</label>
-            <input type="text" id="captcha" name="captcha" required>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" required>
         </div>
         <input type="submit" value="登录">
     </form>
-    <a href="register">没有账号，去注册</a> <!-- 添加注册链接 -->
+    <a href="register">没有账号，去注册</a>
 </div>
 </body>
 </html>

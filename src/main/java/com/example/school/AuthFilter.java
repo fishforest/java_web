@@ -17,7 +17,7 @@ public class AuthFilter implements Filter {
         String path = httpRequest.getRequestURI();
 
         // 1. 白名单路径放行（避免循环重定向）
-        if (path.endsWith("/login") || path.endsWith("/register")|| path.endsWith(".css") || path.endsWith(".js")) {
+        if (path.endsWith("/login") || path.endsWith("admin") || path.endsWith("/register")|| path.endsWith(".css") || path.endsWith(".js")) {
             chain.doFilter(request, response);
             return;
         }
