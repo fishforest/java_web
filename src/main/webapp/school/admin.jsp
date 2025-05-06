@@ -3,6 +3,7 @@
 <%@ page import="com.example.model.User" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>管理员页面</title>
     <style>
         body {
@@ -77,13 +78,13 @@
         function editUser(id) {
             var newName = prompt("请输入新的姓名:");
             if (newName) {
-                window.location.href = "editUser?id=" + id + "&name=" + newName;
+                window.location.href = "admin?action=edit&id=" + id + "&name=" + newName;
             }
         }
 
         function deleteUser(id) {
             if (confirm("确定要删除该用户吗？")) {
-                window.location.href = "deleteUser?id=" + id;
+                window.location.href = "admin?action=delete&id=" + id;
             }
         }
     </script>
@@ -123,7 +124,7 @@
 
     <div class="add-user-form">
         <h2>添加新用户</h2>
-        <form action="addUser" method="post">
+        <form action="admin?action=add" method="post" accept-charset="UTF-8">
             <input type="text" name="name" placeholder="姓名" required>
             <input type="text" name="phone" placeholder="电话号码" required>
             <input type="password" name="password" placeholder="密码" required>
