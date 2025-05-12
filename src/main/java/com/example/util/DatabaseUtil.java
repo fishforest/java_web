@@ -13,8 +13,10 @@ public class DatabaseUtil {
 
     static {
         try {
+            long startTime = System.currentTimeMillis();
             // 加载 MySQL JDBC 驱动
             Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("加载 MySQL JDBC 驱动成功，耗时：" + (System.currentTimeMillis() - startTime) + "ms");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

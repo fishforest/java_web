@@ -130,6 +130,8 @@
         </div>
         <input type="submit" value="注册">
         <button type="button" class="admin-button" onclick="window.location.href='admin'">管理员页面</button>
+        <button type="button" class="admin-button" onclick="window.location.href='hiAdmin'">管理员页面—hiberante</button>
+
     </form>
 </body>
 </html>

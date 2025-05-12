@@ -2,99 +2,104 @@
 <%@ page import="com.example.hibernate.dao.UserDAO" %>
 <%@ page import="com.example.hibernate.model.HiUser" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.model.User" %>
 
-
+<%
+    UserDAO userDAO = new UserDAO();
+    List<HiUser> users = userDAO.getUsers();
+%>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>管理员页面-JDBC</title>
+    <title>管理员页面-Hibernate</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f4f4f4;
+            margin: 0;
             padding: 20px;
         }
         h1 {
-            text-align: center;
             color: #333;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
         }
         th, td {
             padding: 10px;
-            border: 1px solid #ddd;
             text-align: left;
         }
         th {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #f8f8f8;
         }
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-        .action-buttons {
-            display: flex;
-            gap: 5px;
-        }
         .action-buttons button {
             padding: 5px 10px;
+            margin-right: 5px;
             border: none;
-            border-radius: 4px;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 14px;
         }
-        .action-buttons button.edit {
-            background-color: #28a745;
-            color: #fff;
+        .edit {
+            background-color: #4CAF50;
+            color: white;
         }
-        .action-buttons button.delete {
-            background-color: #dc3545;
-            color: #fff;
+        .delete {
+            background-color: #f44336;
+            color: white;
         }
         .add-user-form {
-            margin-top: 20px;
-            padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .add-user-form input[type="text"], .add-user-form input[type="password"] {
+        .add-user-form h2 {
+            margin-top: 0;
+        }
+        .add-user-form input[type="text"],
+        .add-user-form input[type="password"] {
             width: 100%;
             padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            border-radius: 3px;
         }
         .add-user-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
             padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 3px;
             cursor: pointer;
+        }
+        .add-user-form input[type="submit"]:hover {
+            background-color: #45a049;
         }
     </style>
     <script>
         function editUser(id) {
             var newName = prompt("请输入新的姓名:");
             if (newName) {
-                window.location.href = "admin?action=edit&id=" + id + "&name=" + newName;
+                window.location.href = "hiAdmin?action=edit&id=" + id + "&name=" + newName;
             }
         }
 
         function deleteUser(id) {
             if (confirm("确定要删除该用户吗？")) {
-                window.location.href = "admin?action=delete&id=" + id;
+                window.location.href = "hiAdmin?action=delete&id=" + id;
             }
         }
     </script>
 </head>
 <body>
-    <h1>用户管理-直接操作JDBC</h1>
+    <h1>用户管理-Hibernate</h1>
     <table>
         <thead>
             <tr>
@@ -106,12 +111,11 @@
         </thead>
         <tbody>
             <%
-                List<User> users = (List<User>) request.getAttribute("users");
-                for (User user : users) {
+                for (HiUser user : users) {
             %>
             <tr>
                 <td><%= user.getId() %></td>
-                <td><%= user.getName() %></td>
+                <td><%= user.getUsername() %></td>
                 <td><%= user.getPhone() %></td>
                 <td>
                     <div class="action-buttons">
@@ -128,7 +132,7 @@
 
     <div class="add-user-form">
         <h2>添加新用户</h2>
-        <form action="admin?action=add" method="post" accept-charset="UTF-8">
+        <form action="hiAdmin?action=add" method="post" accept-charset="UTF-8">
             <input type="text" name="name" placeholder="姓名" required>
             <input type="text" name="phone" placeholder="电话号码" required>
             <input type="password" name="password" placeholder="密码" required>

@@ -9,7 +9,11 @@ public class UserService {
     private UserDao userDao = new UserDao();
 
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        long startTime = System.currentTimeMillis();
+        List<User> list = userDao.getAllUsers();
+        long endTime = System.currentTimeMillis();
+        System.out.println("getAllUsers：" + (endTime - startTime) + "ms");
+        return list;
     }
 
     public void addUser(User user) {
